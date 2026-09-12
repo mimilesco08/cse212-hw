@@ -13,7 +13,23 @@ public static class Arrays
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
 
-        return []; // replace this return statement with your own
+        // my plan:
+        // - I need an array that is the same size as "length" since that's how many multiples I need to return
+        // - then I'll use a for loop starting at 0 and going until length
+        // - the tricky part is figuring out what the multiple actually is at each index
+        //   since arrays start at 0 but the first multiple should be number * 1, not number * 0
+        //   so I think I need to do number * (i + 1) instead of just number * i
+        // - whatever I calculate just gets put into the array at that same index i
+        // - once the loop is done I just return the array
+
+        double[] result = new double[length];
+
+        for (int i = 0; i < length; i++)
+        {
+            result[i] = number * (i + 1);
+        }
+
+        return result;
     }
 
     /// <summary>
@@ -29,5 +45,30 @@ public static class Arrays
         // Remember: Using comments in your program, write down your process for solving this problem
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
+
+        // my plan:
+        // - going with the list slicing method from the instructions instead of modulo, felt easier to think through
+        // - basically rotating right just means taking some numbers off the end and putting them at the front
+        // - so if amount is 3, I need to grab the last 3 numbers and move them to the beginning
+        //   and the rest of the numbers just get pushed after them, keeping their same order
+        // - to grab "the last amount numbers" I can use GetRange starting at (data.Count - amount) for "amount" items
+        // - to grab "everything else" I use GetRange starting at 0 for (data.Count - amount) items
+        // - one edge case: if amount is equal to data.Count, that means a full rotation which should
+        //   just give back the same list, so I used amount % data.Count to handle that case
+        // - then I clear the original list and add the "last part" back first, followed by the "first part"
+
+        amount = amount % data.Count;
+
+        if (amount == 0)
+        {
+            return; // no rotation needed
+        }
+
+        List<int> tail = data.GetRange(data.Count - amount, amount);
+        List<int> head = data.GetRange(0, data.Count - amount);
+
+        data.Clear();
+        data.AddRange(tail);
+        data.AddRange(head);
     }
 }
