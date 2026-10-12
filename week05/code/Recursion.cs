@@ -1,7 +1,16 @@
 using System.Collections;
 
 public static class Recursion
-{
+{    /// <summary>
+    /// #############
+    /// # Problem 1 #
+    /// #############
+    /// Using recursion, find the sum of 1^2 + 2^2 + 3^2 + ... + n^2
+    /// and return it.  Remember to both express the solution 
+    /// in terms of recursive call on a smaller problem and 
+    /// to identify a base case (terminating case).  If the value of
+    /// n <= 0, just return 0.   A loop should not be used.
+    /// </summary>
     // Problem 1
     public static int SumSquaresRecursive(int n)
     {
